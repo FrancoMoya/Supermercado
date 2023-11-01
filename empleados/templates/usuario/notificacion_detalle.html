@@ -1,0 +1,11 @@
+{% extends 'usuario/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>Detalle de la notificación</h1>
+<p>{{ notification.short_description }}</p>
+<p>{{ notification.timestamp }}</p>
+<p>{{ notification.data }}</p>
+
+{% endblock %}
