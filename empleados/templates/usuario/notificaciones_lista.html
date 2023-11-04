@@ -11,8 +11,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="notificacionesDropdown">
             {% for notification in notifications %}
-            <a class="dropdown-item" href="{% url 'notificacion_detalle' notification.id %}">{{
-                notification.short_description }}</a>
+            <a class="dropdown-item" href="{% url 'notificacion_detalle' notification.id %}">{{ notification.verb }}</a>
             {% endfor %}
         </div>
     </li>

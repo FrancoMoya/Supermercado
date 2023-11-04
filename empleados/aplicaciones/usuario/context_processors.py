@@ -1,6 +1,8 @@
 from aplicaciones.pedido.models import Pedido
 from aplicaciones.usuario.models import Customer
 from aplicaciones.categoria.models import Categoria
+from notifications.models import Notification
+from django.contrib.auth.decorators import login_required
 
 def carrito_info(request):
     carrito_info = {'cantidad_del_carrito': 0}
@@ -29,3 +31,9 @@ def categorias_context(request):
         'categorias': categorias,
     }
 
+def notificaciones_lista_context(request):
+    if request.user.is_authenticated:
+        notifications = Notification.objects.filter(recipient=request.user).order_by('-timestamp')
+    else:
+        notifications = [] 
+    return {'notifications': notifications}

@@ -100,3 +100,24 @@
 .hidden{
 	display: none!important;
 }
+
+/* Estilo para el campo <select> */
+#usuarios_asociados {
+    width: 100%; /* Ancho completo del contenedor */
+    height: 200px; /* Altura para mostrar múltiples opciones */
+    border: 1px solid #ccc; /* Borde con un color de tu elección */
+}
+
+/* Estilo para las opciones <option> */
+#usuarios_asociados option {
+    padding: 5px; /* Espacio alrededor del texto */
+    background-color: white; /* Fondo blanco para cada opción */
+    color: #333; /* Color de texto de tu elección */
+}
+
+/* Estilo para las opciones <option> cuando se seleccionan */
+#usuarios_asociados option:checked {
+    background-color: #007bff; /* Fondo azul cuando se seleccionan */
+    color: white; /* Texto blanco cuando se seleccionan */
+}
+

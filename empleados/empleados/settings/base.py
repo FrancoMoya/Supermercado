@@ -59,6 +59,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'aplicaciones.usuario.context_processors.carrito_info',
                 'aplicaciones.usuario.context_processors.categorias_context',
+                'aplicaciones.usuario.context_processors.notificaciones_lista_context',
             ],
         },
     },
@@ -66,6 +67,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'empleados.wsgi.application'
 LANGUAGE_CODE = 'es-ar'
+
+NOTIFICATIONS_SOFT_DELETE = True
+#Las notificaciones se eliminarán por completo de la base de datos cuando un usuario las marque como leídas o las elimine
+NOTIFICATIONS_USE_JSONFIELD = True
+#Se utilizará un campo JSONField para almacenar datos adicionales relacionados con las notificaciones
 
 #JAZZMIN SETTINGS
 JAZZMIN_SETTINGS = {

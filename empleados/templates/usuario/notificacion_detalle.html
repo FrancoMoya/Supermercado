@@ -3,9 +3,11 @@
 
 {% block content %}
 
-<h1>Detalle de la notificación</h1>
-<p>{{ notification.short_description }}</p>
-<p>{{ notification.timestamp }}</p>
-<p>{{ notification.data }}</p>
+<div class="container">
+    <h1>Detalle de la notificación</h1>
+    <h3>¡Nuevo cupón disponible!</h3>
+    <p>{{ notification.description }}</p>
+    <p>{{ notification.timestamp }}</p>
+</div>
 
 {% endblock %}

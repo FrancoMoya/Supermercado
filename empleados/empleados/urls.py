@@ -22,7 +22,7 @@ from django.conf import settings
 #Importo la vista
 #from aplicaciones.empleado.views import IndexView, PruebaListVIew, ProductosView
 from aplicaciones.usuario.views import home, registro, cerrar_sesion, iniciar_sesion
-from aplicaciones.carrito.views import updateItem, carrito, pago
+from aplicaciones.carrito.views import updateItem, carrito, pago, verificar_cupon
 from aplicaciones.producto.views import productos, productosItems
 from aplicaciones.categoria.views import categorias
 from aplicaciones.descuentos.views import *
@@ -45,6 +45,7 @@ urlpatterns = [
     path('notificaciones/', notificaciones_lista, name='notificaciones_lista'),
     path('notificaciones/<int:notificacion_id>/', notificacion_detalle, name='notificacion_detalle'),
     path('crear_cupon/', crear_cupon, name='crear_cupon'),
+    path('verificar_cupon/', verificar_cupon, name='verificar_cupon'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -5,6 +5,9 @@ from .models import Cupon
 class DescuentosAdmin (admin.ModelAdmin):
     list_display = (
         'fecha',
+        'codigo',
+        'descuento_porcentaje',
+        'descuento_valor',
         #'mostrar_productos',
     )
     

@@ -14,11 +14,22 @@
                 <tr>
                     <th><h5>Items: <strong>{{pedido.get_cart_items}}</strong></h5></th>
                     <th><h5>Total: <strong>${{pedido.get_cart_total}}</strong></h5></th>
+                    <form id="cupon-form" method="post">
+                        <h5>¿Tienes un código de descuento?</h5>
+                        <input type="text" name="cupon_codigo" id="cupon_codigo">
+                        <button type="button" id="verificar-cupon" class="btn btn-warning" style="margin: 5px;">Verificar</button>
+                    </form>
+                    <!-- Agrega un elemento para mostrar el descuento aplicado -->
+                    <div id="descuento-info" style="display: none;">
+                        <p>Descuento aplicado: <span id="descuento-amount"></span></p>
+                        <p>Nuevo Total: <span id="nuevo-total-amount"></span></p>
+                    </div>
                     <th>
                         <a style="float:right; margin: 5px" class="btn btn-success" href="{% url 'pago' %}">Pagar</a>
                     </th>
                 </tr>
             </table>
+            
         </div>
         
         <br>
@@ -48,6 +59,7 @@
             </div>
             {% endfor %}
         </div>
+        
     </div>
 </div>
 
