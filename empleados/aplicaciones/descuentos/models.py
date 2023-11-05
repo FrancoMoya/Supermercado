@@ -1,5 +1,5 @@
 from django.db import models
-from aplicaciones.usuario.models import Customer
+from aplicaciones.usuario.models import User
 from django.core.exceptions import ValidationError
 
 def validate_two_digit(value):
@@ -13,7 +13,7 @@ class Cupon(models.Model):
     fecha = models.DateTimeField('Fecha',auto_now_add=True)
     descuento_porcentaje = models.IntegerField('Porcentaje de descuento', validators=[validate_two_digit], null=True, blank=True)
     descuento_valor = models.IntegerField('Valor de descuento', null=True, blank=True)
-    usuarios_asociados = models.ManyToManyField(Customer, blank=True)
+    usuarios_asociados = models.ManyToManyField(User, blank=True)
     compartido = models.BooleanField('¿Es compartido?',default=True)  # Indica si el cupón es compartido o exclusivo
     # Otros campos relacionados con el cupón (fechas de caducidad, límites de uso, etc.)
         

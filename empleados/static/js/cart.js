@@ -3,6 +3,7 @@ var verificarBtn = document.getElementById('verificar-cupon');
 var cuponCodigoInput = document.getElementById('cupon_codigo');
 var updateBtns = document.getElementsByClassName('update-cart')
 
+if (verificarBtn) {
 // Agrega un event listener al botón "Verificar"
 verificarBtn.addEventListener('click', function () {
     var cuponCodigo = cuponCodigoInput.value; // Obtiene el código de cupón ingresado
@@ -14,6 +15,7 @@ verificarBtn.addEventListener('click', function () {
         verificarCupon(cuponCodigo); // Envía el código de cupón a la función verificarCupon
     }
 });
+}
 function verificarCupon(cuponCodigo) {
     console.log('Verifying coupon...');
 
@@ -63,6 +65,7 @@ function verificarCupon(cuponCodigo) {
 
 for (var i = 0; i < updateBtns.length; i++) {
     updateBtns[i].addEventListener('click', function () {
+        console.log('Entrando en updateUserOrder');
         var productId = this.dataset.product
         var action = this.dataset.action
         console.log('productId:', productId, 'action:', action)
@@ -96,7 +99,5 @@ function updateUserOrder(productId, action) {
         })
 
 }
-
-
 
 

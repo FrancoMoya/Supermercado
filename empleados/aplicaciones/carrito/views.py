@@ -8,8 +8,8 @@ from .models import Carrito
 
 def carrito(request):
     if request.user.is_authenticated:
-        customer = request.user.customer
-        pedido, created = Pedido.objects.get_or_create(customer=customer)
+        usuario = request.user
+        pedido, created = Pedido.objects.get_or_create(usuario=usuario)
         items = pedido.carrito_set.all()
         # pedido es la foreign key de carrito
     else:
@@ -20,8 +20,8 @@ def carrito(request):
 
 def pago(request):
     if request.user.is_authenticated:
-        customer = request.user.customer
-        pedido, created = Pedido.objects.get_or_create(customer=customer)
+        usuario = request.user
+        pedido, created = Pedido.objects.get_or_create(usuario=usuario)
         items = pedido.carrito_set.all()
         # pedido es la foreign key de carritoproducto
     else:
@@ -38,9 +38,10 @@ def updateItem(request):
     print('Action:', action)
     print('Producto ID:', productId)
     
-    customer = request.user.customer
+    usuario = request.user
+    print(usuario)
     producto = Producto.objects.get(id=productId)
-    pedido, created = Pedido.objects.get_or_create(customer=customer)
+    pedido, created = Pedido.objects.get_or_create(usuario=usuario)
     carrito, created = Carrito.objects.get_or_create(pedido=pedido, producto=producto)
     
     if action == 'add':
@@ -58,8 +59,8 @@ def verificar_cupon(request):
     if request.method == 'POST':
         data = json.loads(request.body)
         cupon_codigo = data.get('cupon_codigo')  # Obtiene el código de cupón del cuerpo de la solicitud
-        customer = request.user.customer
-        pedido, created = Pedido.objects.get_or_create(customer=customer)
+        usuario = request.user
+        pedido, created = Pedido.objects.get_or_create(usuario=usuario)
         
         print('Cupón recibido:', cupon_codigo)  # Registra el código de cupón recibido
         
@@ -69,7 +70,7 @@ def verificar_cupon(request):
             print('Código del cupón:', cupon_codigo)
             # Agrega un print para verificar si el usuario está autenticado
             print('Usuario autenticado:', request.user.is_authenticated)
-            if cupon.compartido or customer in cupon.usuarios_asociados.all():
+            if cupon.compartido or usuario in cupon.usuarios_asociados.all():
                 # El cupón es compartido o el usuario está en la lista de usuarios asociados
                 # Aplicar el descuento aquí
                 # Aplica el descuento al total del carrito

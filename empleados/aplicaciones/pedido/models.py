@@ -1,12 +1,12 @@
 from django.db import models
-from aplicaciones.usuario.models import Customer
+from aplicaciones.usuario.models import User
 
 # Relacion entre "Pedido" y "Usuario"= MUCHOS A UNO (permitir anonimos)
 class Pedido (models.Model):
     #TIPOS_PAGOS_CHOICES=(('0','Mercado Pago'),('1','Tarjeta de crédito'),('2','Tarjeta de débito'),)
     #medio_de_pago = models.CharField ('Medio de Pago', max_length=1, choices=TIPOS_PAGOS_CHOICES)
     fecha = models.DateTimeField('Fecha',auto_now_add=True)
-    customer = models.ForeignKey (Customer, on_delete=models.CASCADE)
+    usuario = models.ForeignKey (User, on_delete=models.CASCADE)
     # Otros campos relevantes para el pedido, como estado, dirección de envío, total, etc.
     
     class Meta:
@@ -15,7 +15,7 @@ class Pedido (models.Model):
         ordering = ['fecha']
     
     def __str__(self):
-        return f"Usuario: {self.customer}"
+        return f"Usuario: {self.usuario}"
         
     """def medio_pago_display(self):
         return dict(self.TIPOS_PAGOS_CHOICES).get(self.medio_de_pago, 'Desconocido')

@@ -34,7 +34,7 @@
             <label for="usuarios_asociados">Seleccionar los usuarios:</label>
             <select name="usuarios_asociados" id="usuarios_asociados" multiple>
                 {% for usuario in usuarios %}
-                <option value="{{ usuario.user.id }}">{{ usuario.user.username }}</option>
+                <option value="{{ usuario.id }}">{{ usuario.nombre }}</option>
                 {% endfor %}
             </select>
         </div>

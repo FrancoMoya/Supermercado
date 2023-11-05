@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Pedido
 class PedidoAdmin (admin.ModelAdmin):
     list_display = (
-        'customer',
+        'usuario',
         #'total',
         #'medio_de_pago',
         'fecha',

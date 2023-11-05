@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from notifications.models import Notification
-from aplicaciones.usuario.models import Customer
+from aplicaciones.usuario.models import User
 from .models import Cupon
 import secrets, string
 from django.contrib.auth.decorators import login_required
@@ -10,10 +10,10 @@ def generar_codigo_aleatorio(length=10):
     return ''.join(secrets.choice(characters) for i in range(length))
 
 def notificar_a_todos_los_usuarios_sobre_cupon(cupon):
-    usuarios = Customer.objects.all()
+    usuarios = User.objects.all()
     mensaje = f"CÓDIGO: {cupon.codigo}"
-    for customer in usuarios:
-        user = customer.user
+    for usuario in usuarios:
+        user = usuario
         Notification.objects.create(
             actor=cupon,
             recipient=user,
@@ -53,16 +53,16 @@ def crear_cupon(request):
         # Añadir usuarios asociados si se proporcionaron en el formulario
         usuarios_asociados = request.POST.getlist('usuarios_asociados')
         for usuario_id in usuarios_asociados:
-            user = Customer.objects.get(id=usuario_id)
+            user = User.objects.get(id=usuario_id)
             cupon.usuarios_asociados.add(user)
 
         if not compartido and usuarios_asociados:
             for usuario_id in usuarios_asociados:
-                usuario = Customer.objects.get(id=usuario_id)
+                usuario = User.objects.get(id=usuario_id)
                 mensaje = f"CÓDIGO: {cupon.codigo} (Este cupón es EXCLUSIVO)"
                 Notification.objects.create(
                     actor=cupon,
-                    recipient=usuario.user,
+                    recipient=usuario,
                     verb='¡Nuevo cupón disponible! (EXCLUSIVO)',
                     description=mensaje,
                     target=cupon,
@@ -73,7 +73,7 @@ def crear_cupon(request):
         return redirect('notificaciones_lista')
 
     # Renderiza la página de creación del cupón
-    usuarios = Customer.objects.all()
+    usuarios = User.objects.all()
     return render(request, 'descuentos/crear_cupon.html', {'usuarios': usuarios})
 @login_required
 def notificaciones_lista(request):

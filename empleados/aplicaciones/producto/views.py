@@ -2,7 +2,6 @@ from django.shortcuts import render
 from .models import Producto
 from aplicaciones.pedido.models import Pedido
 from aplicaciones.carrito.models import *
-from aplicaciones.usuario.models import Customer
 
 def productos (request):
     
@@ -13,8 +12,8 @@ def productos (request):
     
 def productosItems (request):
     if request.user.is_authenticated:
-        customer = request.user.customer
-        pedido, created = Pedido.objects.get_or_create(customer=customer)
+        usuario = request.user
+        pedido, created = Pedido.objects.get_or_create(usuario=usuario)
         cartItems = pedido.get_cart_items
     else:
         items = []

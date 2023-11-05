@@ -19,8 +19,6 @@ from django.urls import path, include
 
 from django.conf.urls.static import static
 from django.conf import settings
-#Importo la vista
-#from aplicaciones.empleado.views import IndexView, PruebaListVIew, ProductosView
 from aplicaciones.usuario.views import home, registro, cerrar_sesion, iniciar_sesion
 from aplicaciones.carrito.views import updateItem, carrito, pago, verificar_cupon
 from aplicaciones.producto.views import productos, productosItems
@@ -29,9 +27,6 @@ from aplicaciones.descuentos.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('notifications/', include('notifications.urls', namespace='notifications')),
-    #path('home/', IndexView.as_view(), name = 'home'),
-    #path('productos/', ProductosView.as_view(), name = 'productos'),
-    #path('lista/', PruebaListVIew.as_view()),
     path('', home, name = 'home'),
     path('registro/', registro, name = 'registro'),
     path('productos/', productos, name = 'productos'),

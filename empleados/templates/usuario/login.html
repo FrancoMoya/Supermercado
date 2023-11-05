@@ -2,13 +2,24 @@
 
 {% block content %}
 <h1>login</h1>
-{{error}}
 
-<form method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button>
-        Iniciar Sesión
-    </button>
-</form>
+
+<div class="container">
+    <form method="post" action="{% url 'login' %}" class="form">
+        <p style="color: red;">{{error}}</p>
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" placeholder="Ingrese su dirección de email" class="form-control" required="">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input type="password" name="password" id="password" placeholder="Ingrese su contraseña" class="form-control" required="">
+        </div>
+
+        <button type="submit" class="btn btn-primary" value="LOGIN">Iniciar Sesión</button>
+    </form>
+</div>
 {% endblock %}

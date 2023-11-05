@@ -1,7 +1,6 @@
 from django.db import models
 from aplicaciones.producto.models import Producto
 from aplicaciones.pedido.models import Pedido
-from aplicaciones.usuario.models import Customer
 
 # Relacion entre "Carrito" y "Producto"= MUCHOS A UNO
 # Relacion entre "Carrito" y "Pedido"= MUCHOS A UNO
